@@ -9,7 +9,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 precmd () {
-        print # 1行あける
+        print
+        print
 }
 
 function chpwd() { ls }
