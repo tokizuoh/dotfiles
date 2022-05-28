@@ -153,3 +153,6 @@ RPROMPT='`rprompt-git-current-branch`'
 
 # randomizer
 alias randomizer="/Users/tokizo/prg/sw/randomizer/.build/debug/randomizer"
+
+# reboot shell
+alias resh='echo -e --REBOOT SHEL--;exec $SHELL -l'
