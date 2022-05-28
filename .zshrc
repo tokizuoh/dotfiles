@@ -4,6 +4,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Insert two blank lines each time the command is executed
 precmd () {
         print
         print
