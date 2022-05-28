@@ -107,31 +107,7 @@ function chpwd() { ls }
 # alias
 
 ## git
-alias gp='git push'
 alias gs='git status'
-alias gc-m='git commit -m'
-alias gwl='git worktree list'
-alias gd='git diff'
-
-## g++
-alias gga='g++ a.cpp -o a'
-alias ggb='g++ b.cpp -o b'
-alias ggc='g++ c.cpp -o c'
-alias ggd='g++ d.cpp -o d'
-alias gge='g++ e.cpp -o e'
-alias ggf='g++ f.cpp -o f'
-
-## jenkins
-alias jstart='brew services start jenkins'
-alias jstop='brew services stop jenkins'
-alias jrestart='brew services restart jenkins'
-
-## nginx
-alias ngstart='nginx'
-alias ngstop='nginx -s stop'
-
-## cp
-alias newcp='/Users/tokizo/prg/cp/new.sh'
 
 PROMPT=$'%K{green}%n%k [%*] %F{blue}[%~]%f \n%F{green}>%f '
 
