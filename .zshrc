@@ -10,6 +10,7 @@ precmd () {
         print
 }
 
+# `ls` when the current directory changes
 function chpwd() { ls }
 
 # alias
