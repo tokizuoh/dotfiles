@@ -177,17 +177,3 @@ RPROMPT='`rprompt-git-current-branch`'
 
 # randomizer
 alias randomizer="/Users/tokizo/prg/sw/randomizer/.build/debug/randomizer"
-
-# cargo
-alias crun="cargo run"
-alias cbuild="cargo build"
-
-# https://github.com/abema/abema-ios-tutorial-public
-eval "$(rbenv init -)"
-
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
-export PATH="$HOME/prg/scala/sbt/bin:$PATH"
-export PGDATA=/usr/local/var/postgres
-
-# go-docker-template
-alias gosu="sh /Users/tokizo/prg/utility/gosu.sh"
