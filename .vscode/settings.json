@@ -3,6 +3,7 @@
     "editor.formatOnSave": true,
     "workbench.colorCustomizations": {
         "editor.background": "#002727",
+        "editorLineNumber.foreground": "#5a5a5a",
         "sideBar.background": "#002020",
         "activityBar.background": "#003030",
         "editorGroupHeader.tabsBackground": "#002020",
