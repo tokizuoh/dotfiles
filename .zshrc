@@ -65,3 +65,6 @@ alias randomizer="/Users/tokizo/prg/sw/randomizer/.build/debug/randomizer"
 
 # reboot shell
 alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
+
+# remove merged branch
+alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git branch -d'
