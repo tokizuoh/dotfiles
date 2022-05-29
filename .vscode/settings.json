@@ -4,7 +4,9 @@
     "workbench.colorCustomizations": {
         "editor.background": "#002727",
         "sideBar.background": "#002020",
-        "activityBar.background": "#003030"
+        "activityBar.background": "#003030",
+        "editorGroupHeader.tabsBackground": "#002020",
+        "tab.inactiveBackground": "#000000"
     },
     "terminal.integrated.fontSize": 16,
 }
