@@ -2,7 +2,9 @@
     "editor.fontSize": 18,
     "editor.formatOnSave": true,
     "workbench.colorCustomizations": {
-        "editor.background": "#002727"
+        "editor.background": "#002727",
+        "sideBar.background": "#002020",
+        "activityBar.background": "#003030"
     },
-    "terminal.integrated.fontSize": 16
+    "terminal.integrated.fontSize": 16,
 }
