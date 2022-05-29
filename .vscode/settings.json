@@ -1,5 +1,6 @@
 {
     "editor.fontSize": 18,
+    "workbench.colorTheme": "Visual Studio Dark",
     "editor.formatOnSave": true,
     "workbench.colorCustomizations": {
         "editor.background": "#002727",
