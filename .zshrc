@@ -1,4 +1,4 @@
-export ZSH="/Users/tokizo/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 plugins=(git)
 
