@@ -8,5 +8,19 @@
         "key": "ctrl+;",
         "command": "workbench.action.focusFirstEditorGroup",
         "when": "terminalFocus"
-    }
+    },
+    {
+        "key": "ctrl+n ctrl+t",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    {
+        "key": "ctrl+shift+`",
+        "command": "-workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    {
+        "key": "ctrl+d ctrl+t",
+        "command": "workbench.action.terminal.kill"
+    },
 ]
