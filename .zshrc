@@ -68,3 +68,6 @@ alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
 
 # remove merged branch
 alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git branch -d'
+
+# ghq
+alias ghqcd='cd $(ghq list --full-path | peco)'
