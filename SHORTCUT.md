@@ -11,6 +11,8 @@
 | command | description |
 | :-- | :-- |
 | `ctrl ;` | エディタとターミナル間の移動 |
+| `ctrl n` `ctrl t` | ターミナル作成 |
+| `ctrl d` `ctrl t` | アクティブなターミナルを削除 |
 | `command w` | 選択中のエディタのタブ削除 |
 | `command b` | サイドバー表示/非表示 |
 
