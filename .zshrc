@@ -60,9 +60,6 @@ setopt prompt_subst
 # プロンプトの右側にメソッドの結果を表示させる
 RPROMPT='`rprompt-git-current-branch`'
 
-# randomizer
-alias randomizer="/Users/tokizo/prg/sw/randomizer/.build/debug/randomizer"
-
 # reboot shell
 alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
 
