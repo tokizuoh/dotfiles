@@ -20,7 +20,7 @@
         "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
     },
     {
-        "key": "ctrl+d ctrl+t",
+        "key": "ctrl+k ctrl+t",
         "command": "workbench.action.terminal.kill"
     },
 ]
