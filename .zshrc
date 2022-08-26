@@ -36,8 +36,14 @@ alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git
 #########
 source $ZSH/oh-my-zsh.sh
 
-# Insert two blank lines each time the command is executed
+# Insert two blank lines each time the command is executed.
 precmd () {
         print
         print
 }
+
+# `ls` when the current directory changes.
+function chpwd() { ls }
+
+# Disable automatic upgrade confirmation for oh-my-zsh.
+DISABLE_AUTO_UPDATE="true"
