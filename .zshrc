@@ -47,3 +47,9 @@ function chpwd() { ls }
 
 # Disable automatic upgrade confirmation for oh-my-zsh.
 DISABLE_AUTO_UPDATE="true"
+
+# Hide username and hostname.
+prompt_context() {
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+  fi
+}
