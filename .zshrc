@@ -35,3 +35,9 @@ alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git
 # Other #
 #########
 source $ZSH/oh-my-zsh.sh
+
+# Insert two blank lines each time the command is executed
+precmd () {
+        print
+        print
+}
