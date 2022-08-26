@@ -18,16 +18,16 @@ plugins=(git)
 # Alias #
 #########
 
-## git status
+# git status
 alias gs='git status'
 
-## ghq, peco
+# ghq, peco
 alias ghqcd='cd $(ghq list --full-path | peco)'
 
-## Reboot shell
+# Reboot shell
 alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
 
-## Remove merged branch
+# Remove merged branch
 alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git branch -d'
 
 
