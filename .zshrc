@@ -54,6 +54,31 @@ prompt_context() {
   fi
 }
 
+# Remove branch icon.
+prompt_git() {
+  local color ref
+  is_dirty() {
+    test -n "$(git status --porcelain --ignore-submodules)"
+  }
+  ref=`git branch --contains | cut -d " " -f 2`
+  if [[ -n "$ref" ]]; then
+    if is_dirty; then
+      color=yellow
+      ref="${ref}"
+    else
+      color=green
+      ref="${ref}"
+    fi
+    if [[ "${ref/.../}" == "$ref" ]]; then
+      ref="$ref"
+    else
+      ref="${ref/.../}"
+    fi
+    prompt_segment $color black
+    print -n "$ref"
+  fi
+}
+
 # Add new line.
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
