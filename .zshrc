@@ -56,26 +56,29 @@ prompt_context() {
 
 # Remove branch icon.
 prompt_git() {
-  local color ref
-  is_dirty() {
-    test -n "$(git status --porcelain --ignore-submodules)"
-  }
-  ref=`git branch --contains | cut -d " " -f 2`
-  if [[ -n "$ref" ]]; then
-    if is_dirty; then
-      color=yellow
-      ref="${ref}"
-    else
-      color=green
-      ref="${ref}"
+  # TODO: fix: [! -d .git]
+  if [ -d .git ]; then
+    local color ref
+    is_dirty() {
+      test -n "$(git status --porcelain --ignore-submodules)"
+    }
+    ref=`git branch --contains | cut -d " " -f 2`
+    if [[ -n "$ref" ]]; then
+      if is_dirty; then
+        color=yellow
+        ref="${ref}"
+      else
+        color=green
+        ref="${ref}"
+      fi
+      if [[ "${ref/.../}" == "$ref" ]]; then
+        ref="$ref"
+      else
+        ref="${ref/.../}"
+      fi
+      prompt_segment $color black
+      print -n "$ref"
     fi
-    if [[ "${ref/.../}" == "$ref" ]]; then
-      ref="$ref"
-    else
-      ref="${ref/.../}"
-    fi
-    prompt_segment $color black
-    print -n "$ref"
   fi
 }
 
