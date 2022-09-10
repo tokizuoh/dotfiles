@@ -22,7 +22,7 @@ plugins=(git)
 alias gs='git status'
 
 # ghq, peco
-alias ghqcd='cd $(ghq list --full-path | peco)'
+alias ghqcd='`ghq list --full-path | peco`'
 
 # Reboot shell
 alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
