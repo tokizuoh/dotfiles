@@ -21,6 +21,9 @@ plugins=(git)
 # git status
 alias gs='git status'
 
+# git switch filter by peco
+alias gsp='git switch `git branch | peco | sed -e "s/*//g"`'
+
 # ghq, peco
 alias ghqcd='`ghq list --full-path | peco`'
 
