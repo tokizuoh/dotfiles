@@ -10,4 +10,5 @@
         "editorGroupHeader.tabsBackground": "#002020"
     },
     "terminal.integrated.fontSize": 16,
+    "files.insertFinalNewline": true,
 }
