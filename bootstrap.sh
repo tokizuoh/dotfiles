@@ -10,10 +10,14 @@ for f in .??*; do
     ln -sfnv ${PWD}/${f} $HOME/${f}
 done
 
-#Homebrew
+# Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle
 
-# # VSCode
-# ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-# ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+# VSCode
+ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+
+# .gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+ln -sfnv ${PWD}/.gitignore_global ~/.gitignore_global
