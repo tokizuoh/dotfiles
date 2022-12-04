@@ -27,9 +27,6 @@ alias gsp='git switch `git branch | peco | sed -e "s/*//g"`'
 # ghq, peco
 alias ghqcd='`ghq list --full-path | peco`'
 
-# Reboot shell
-alias resh='echo -e --REBOOT SHELL--;exec $SHELL -l'
-
 # Remove merged branch
 alias rmmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git branch -d'
 
