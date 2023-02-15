@@ -11,8 +11,12 @@ for f in .??*; do
 done
 
 # Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle
+if test `uname -m` = "arm64"; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew bundle
+else
+    echo "Under construction..."
+fi
 
 # VSCode
 ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
