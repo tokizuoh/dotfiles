@@ -15,7 +15,12 @@ if test `uname -m` = "arm64"; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew bundle
 else
-    echo "Under construction..."
+    if [ ! -e /opt/homebrew-x86_64 ]; then
+        sudo mkdir /opt/homebrew-x86_64
+        sudo chown `whoami`:staff /opt/homebrew-x86_64
+        curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /opt/homebrew-x86_6
+    fi
+    brew bundle
 fi
 
 # VSCode
