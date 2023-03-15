@@ -5,7 +5,7 @@ alias ls='ls --color'
 alias ghqcd='`ghq list --full-path | peco`'
 alias gs='git status'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
-alias rmb='git branch --merged | xargs -n 1 | egrep -v "develop|\*" | xargs git branch -d'
+alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
 
 # Other
 setopt AUTO_CD
