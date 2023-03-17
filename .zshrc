@@ -18,3 +18,5 @@ precmd () {
     print
     print
 }
+
+eval "$(rbenv init - zsh)"
