@@ -19,4 +19,6 @@ precmd () {
     print
 }
 
-eval "$(rbenv init - zsh)"
+if type rbenv > /dev/null 2>&1; then
+    eval "$(rbenv init - zsh)"
+fi
