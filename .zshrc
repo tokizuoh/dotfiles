@@ -19,6 +19,12 @@ precmd () {
     print
 }
 
+## Exclude frequently used commands before registering them in history
+zshaddhistory() {
+    local line="${1%%$'\n'}"
+    [[ ! "$line" =~ "^(cd|ls|rm|rmdir|xed)($| )" ]]
+}
+
 if type rbenv > /dev/null 2>&1; then
     eval "$(rbenv init - zsh)"
 fi
