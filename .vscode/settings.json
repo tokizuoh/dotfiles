@@ -11,4 +11,5 @@
     },
     "terminal.integrated.fontSize": 16,
     "files.insertFinalNewline": true,
+    "terminal.external.osxExec": "Warp.app",
 }
