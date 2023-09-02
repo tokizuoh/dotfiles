@@ -7,7 +7,9 @@
         "editor.background": "#002727",
         "tab.inactiveBackground": "#000000",
         "editorLineNumber.foreground": "#5a5a5a",
-        "editorGroupHeader.tabsBackground": "#002020"
+        "editorGroupHeader.tabsBackground": "#002020",
+        "editorInlayHint.foreground": "#CCCCCC",
+        "editorInlayHint.background": "#224D1F"
     },
     "terminal.integrated.fontSize": 16,
     "files.insertFinalNewline": true,
