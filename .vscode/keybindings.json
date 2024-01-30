@@ -23,4 +23,8 @@
         "key": "ctrl+k ctrl+t",
         "command": "workbench.action.terminal.kill"
     },
+    {
+        "key": "cmd+k",
+        "command": "workbench.action.splitEditorRight"
+    },
 ]
