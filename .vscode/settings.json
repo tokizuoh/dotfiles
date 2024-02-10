@@ -22,5 +22,7 @@
     },
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": -1,
 }
