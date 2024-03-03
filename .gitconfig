@@ -8,3 +8,5 @@
     defaultBranch = main
 [push]
     autosetupremote = true
+[diff]
+    algorithm = histogram
