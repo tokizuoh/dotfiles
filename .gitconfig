@@ -1,8 +1,8 @@
 [user]
-	email = tokizuoh@gmail.com
-	name = tokizuoh
+    email = tokizuoh@gmail.com
+    name = tokizuoh
 [core]
-	excludesfile = ${HOME}/.gitignore_global
+    excludesfile = ${HOME}/.gitignore_global
 
 [init]
     defaultBranch = main
