@@ -3,3 +3,6 @@
 	name = tokizuoh
 [core]
 	excludesfile = ${HOME}/.gitignore_global
+
+[push]
+    autosetupremote = true
