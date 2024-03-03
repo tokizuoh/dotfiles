@@ -32,6 +32,9 @@ do
     code --install-extension $line
 done
 
+# .gitconfig
+ln -sfnv ${PWD}/.gitconfig ~/.gitconfig
+
 # .gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 ln -sfnv ${PWD}/.gitignore_global ~/.gitignore_global
