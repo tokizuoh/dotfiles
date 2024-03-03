@@ -7,6 +7,7 @@ alias gs='git status'
 alias gsw='git switch `git branch | peco`'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
 alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
+alias rm='trash-put'
 
 # Other
 setopt AUTO_CD
