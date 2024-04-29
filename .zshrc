@@ -5,6 +5,7 @@ alias ls='ls --color'
 alias ghqcd='`ghq list --full-path | peco`'
 alias gs='git status'
 alias gsw='git switch `git branch | peco`'
+alias gswpr='peco-checkout-pull-request'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
 alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
 alias rm='trash-put'
@@ -30,3 +31,11 @@ zshaddhistory() {
 if type rbenv > /dev/null 2>&1; then
     eval "$(rbenv init - zsh)"
 fi
+
+## Checkout PR
+function peco-checkout-pull-request () {
+    local selected_pr_id=$(gh pr list | peco | awk '{ print $1 }')
+    if [ -n "$selected_pr_id" ]; then
+        gh pr checkout $selected_pr_id
+    fi
+}
