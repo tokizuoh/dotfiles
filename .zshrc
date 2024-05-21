@@ -6,6 +6,7 @@ alias ghqcd='`ghq list --full-path | peco`'
 alias gs='git status'
 alias gsw='git switch `git branch | peco`'
 alias gswpr='peco-checkout-pull-request'
+alias gswh='switch-default-branch-if-exists'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
 alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
 alias rm='trash-put'
@@ -37,5 +38,15 @@ function peco-checkout-pull-request () {
     local selected_pr_id=$(gh pr list | peco | awk '{ print $1 }')
     if [ -n "$selected_pr_id" ]; then
         gh pr checkout $selected_pr_id
+    fi
+}
+
+## Switch Default Branch
+function switch-default-branch-if-exists () {
+    if [ -e .git/refs/remotes/origin/HEAD ]; then
+        default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+        git switch $default_branch
+    else
+        echo "refs/remotes/origin/HEAD does not exist."
     fi
 }
