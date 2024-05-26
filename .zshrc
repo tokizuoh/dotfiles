@@ -15,7 +15,7 @@ alias rm='trash-put'
 # Other
 setopt AUTO_CD
 
-## `ls` when the current directory changes.
+## Do `ls` when the current directory changes.
 function chpwd() { ls }
 
 ## Insert two blank lines each time the command is executed
