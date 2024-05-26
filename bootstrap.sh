@@ -25,13 +25,15 @@ fi
 brew bundle
 
 # Visual Studio Code
-ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+if [ -d "${PWD}/.vscode/" ]; then
+    ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
-cat ${PWD}/.vscode/extensions.txt | while read line
-do
-    code --install-extension $line
-done
+    cat ${PWD}/.vscode/extensions.txt | while read line
+    do
+        code --install-extension $line
+    done
+fi
 
 # .gitconfig
 ln -sfnv ${PWD}/.gitconfig ~/.gitconfig
