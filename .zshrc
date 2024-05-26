@@ -1,7 +1,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Alias
-alias ls='ls --color'
+alias ls='ls --color=auto'
 alias ghqcd='`ghq list --full-path | peco`'
 alias gs='git status'
 alias gsw='git switch `git branch | peco`'
