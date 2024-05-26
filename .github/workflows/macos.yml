@@ -13,4 +13,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: "Run bootstrap"
         run: |
-          make bootstrap > /dev/null 2>&1;
+          # make bootstrap > /dev/null 2>&1;
+          make bootstrap
