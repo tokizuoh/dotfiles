@@ -34,7 +34,7 @@ if type rbenv > /dev/null 2>&1; then
     eval "$(rbenv init - zsh)"
 fi
 
-## Checkout PR
+## Checkout PR branch
 function peco-checkout-pull-request () {
     local selected_pr_id=$(gh pr list | peco | awk '{ print $1 }')
     if [ -n "$selected_pr_id" ]; then
@@ -42,7 +42,7 @@ function peco-checkout-pull-request () {
     fi
 }
 
-## Switch Default Branch
+## Switch default branch
 function switch-default-branch-if-exists () {
     if [ -e .git/refs/remotes/origin/HEAD ]; then
         default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
