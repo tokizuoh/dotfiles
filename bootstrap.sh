@@ -26,13 +26,13 @@ brew bundle
 
 # Visual Studio Code
 if [ -d "${PWD}/.vscode/" ]; then
-    if [ ! -f "Support/Code/User/settings.json" ]; then
-        touch Support/Code/User/settings.json
+    if [ ! -f "~/Library/Application\ Support/Code/User/settings.json" ]; then
+        touch ~/Library/Application\ Support/Code/User/settings.json
     fi
     ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
-    if [ ! -f "Support/Code/User/keybindings.json" ]; then
-        touch Support/Code/User/keybindings.json
+    if [ ! -f "~/Library/Application\ Support/Code/User/keybindings.json" ]; then
+        touch ~/Library/Application\ Support/Code/User/keybindings.json
     fi
     ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 
