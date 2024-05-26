@@ -1,0 +1,16 @@
+name: macos
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  macos-test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Run bootstrap"
+        run: |
+          make bootstrap > /dev/null 2>&1;
