@@ -1,5 +1,5 @@
-.PHONY: all
-all:
+.PHONY: bootstrap
+bootstrap:
 	./bootstrap.sh
 
 .PHONY: update-vscode-extensions
