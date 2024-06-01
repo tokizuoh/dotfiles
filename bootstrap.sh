@@ -37,5 +37,9 @@ done
 ln -sfnv ${PWD}/.gitconfig ~/.gitconfig
 
 # .gitignore_global
-git config --global core.excludesfile ~/.gitignore_global
-ln -sfnv ${PWD}/.gitignore_global ~/.gitignore_global
+git_config_path=${HOME}/.config/git
+if [ ! -d "$git_config_path" ]; then
+  mkdir -p "$git_config_path"
+  touch ${git_config_path}/ignore
+fi
+ln -sfnv ${PWD}/.gitignore_global ${git_config_path}/ignore

@@ -1,10 +1,6 @@
 [user]
     email = tokizuoh@gmail.com
     name = tokizuoh
-[core]
-    # TODO: $XDG_CONFIG_HOME
-    excludesfile = ${HOME}/.gitignore_global
-
 [init]
     defaultBranch = main
 [push]
