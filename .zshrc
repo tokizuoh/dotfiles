@@ -1,5 +1,8 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
+# ref: https://github.com/sharkdp/bat
+export BAT_THEME="Monokai Extended"
+
 # Alias
 alias ls='ls --color=auto'
 alias ghqcd='`ghq list --full-path | peco`'
