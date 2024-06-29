@@ -36,6 +36,9 @@ done
 # Xcode
 ln -sfnv ${PWD}/.xcode/IDETemplateMacros.plist ~/Library/Developer/Xcode/UserData/IDETemplateMacros.plist
 
+# zed
+ln -sfnv ${PWD}/.zed/settings.json ~/.config/zed/settings.json
+
 # .gitconfig
 ln -sfnv ${PWD}/.gitconfig ~/.gitconfig
 
