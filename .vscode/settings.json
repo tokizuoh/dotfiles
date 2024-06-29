@@ -1,28 +1,29 @@
 {
-    "editor.fontSize": 18,
-    "workbench.colorTheme": "Visual Studio Dark",
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#003030",
-        "sideBar.background": "#002020",
-        "editor.background": "#002727",
-        "tab.inactiveBackground": "#000000",
-        "editorLineNumber.foreground": "#5a5a5a",
-        "editorGroupHeader.tabsBackground": "#002020",
-        "editorInlayHint.foreground": "#888888",
-        "editorInlayHint.background": "#224D1F"
-    },
-    "terminal.integrated.fontSize": 16,
-    "files.insertFinalNewline": true,
-    "terminal.external.osxExec": "Warp.app",
-    "[graphql]": {
-        "editor.tabSize": 2
-    },
-    "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust-analyzer"
-    },
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.formatOnType": true,
-    "files.autoSave": "afterDelay",
-    "window.zoomLevel": -1,
+  "editor.fontSize": 18,
+  "workbench.colorTheme": "Visual Studio Dark",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#003030",
+    "sideBar.background": "#002020",
+    "editor.background": "#002727",
+    "tab.inactiveBackground": "#000000",
+    "editorLineNumber.foreground": "#5a5a5a",
+    "editorGroupHeader.tabsBackground": "#002020",
+    "editorInlayHint.foreground": "#888888",
+    "editorInlayHint.background": "#224D1F"
+  },
+  "terminal.integrated.fontSize": 16,
+  "files.insertFinalNewline": true,
+  "terminal.external.osxExec": "Warp.app",
+  "[graphql]": {
+    "editor.tabSize": 2
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "files.autoSave": "afterDelay",
+  "window.zoomLevel": -1,
+  "workbench.editor.enablePreview": false
 }

@@ -1,30 +1,30 @@
 [
-    {
-        "key": "ctrl+;",
-        "command": "workbench.action.terminal.focus",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+n ctrl+t",
-        "command": "workbench.action.terminal.new",
-        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-    },
-    {
-        "key": "ctrl+shift+`",
-        "command": "-workbench.action.terminal.new",
-        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
-    },
-    {
-        "key": "ctrl+k ctrl+t",
-        "command": "workbench.action.terminal.kill"
-    },
-    {
-        "key": "cmd+k",
-        "command": "workbench.action.splitEditorRight"
-    },
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.terminal.focus",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.focusFirstEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+n ctrl+t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "-workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+k ctrl+t",
+    "command": "workbench.action.terminal.kill"
+  },
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.splitEditorRight"
+  }
 ]
