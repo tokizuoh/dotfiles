@@ -4,6 +4,8 @@
   "buffer_font_size": 20,
   "show_whitespaces": "all",
   "experimental.theme_overrides": {
-    "editor.invisible": "#777777"
+    "editor.invisible": "#777777",
+    "created": "#71E889",
+    "modified": "#A29EF4"
   }
 }
