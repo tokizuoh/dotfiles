@@ -7,6 +7,59 @@
   "experimental.theme_overrides": {
     "editor.invisible": "#777777",
     "created": "#71E889",
-    "modified": "#A29EF4"
+    "modified": "#FBB0CE",
+    "syntax": {
+      "boolean": {
+        "color": "#F63B92",
+        "font_style": null,
+        "font_weight": null
+      },
+      "comment": {
+        "color": "#74818E",
+        "font_style": null,
+        "font_weight": null
+      },
+      "function": {
+        "color": "#36B5DB",
+        "font_style": null,
+        "font_weight": null
+      },
+      "keyword": {
+        "color": "#F63B92",
+        "font_style": null,
+        "font_weight": null
+      },
+      "number": {
+        "color": "#FFE674",
+        "font_style": null,
+        "font_weight": null
+      },
+      "string": {
+        "color": "#FF5558",
+        "font_style": null,
+        "font_weight": null
+      },
+      "variable": {
+        "color": "#FFFFFF",
+        "font_style": null,
+        "font_weight": null
+      },
+      "operator": {
+        "color": "#FFFFFF",
+        "font_style": null,
+        "font_weight": null
+      },
+      "property": {
+        "color": "#B4C8E8",
+        "font_style": null,
+        "font_weight": null
+      },
+      "type": {
+        "color": "#6ADCFF",
+        "font_style": null,
+        "font_weight": null
+      }
+      // TODO: Fix scroll bar color
+    }
   }
 }
