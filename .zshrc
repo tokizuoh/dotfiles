@@ -3,6 +3,9 @@ export PATH="/opt/homebrew/bin:$PATH"
 # ref: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended"
 
+# ref: https://github.com/kylef/swiftenv/blob/1.5.0/docs/installation.md#via-homebrew
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
 # Alias
 alias ls='ls --color=auto'
 alias ghqcd='`ghq list --full-path | peco`'
