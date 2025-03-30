@@ -6,7 +6,7 @@
   },
   {
     "key": "ctrl+;",
-    "command": "workbench.action.focusFirstEditorGroup",
+    "command": "workbench.action.closePanel",
     "when": "terminalFocus"
   },
   {
