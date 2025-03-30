@@ -10,4 +10,6 @@ ms-vscode.makefile-tools
 rangav.vscode-thunder-client
 redhat.vscode-yaml
 saoudrizwan.claude-dev
+swiftlang.swift-vscode
 timonwong.shellcheck
+vadimcn.vscode-lldb
