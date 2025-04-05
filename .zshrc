@@ -37,7 +37,7 @@ precmd () {
         changes=$(git -C "$dotfiles_dir" status --porcelain)
         if [ -n "$changes" ]; then
             echo "\033[90m+---------------------------------------------------------------+"
-            echo "| ⚠️  Warning: dotfiles have uncommitted changes!                 |"
+            echo "| ⚠️  Warning: dotfiles have uncommitted changes!                |"
             echo "| Commit them now!                                              |"
             echo "+---------------------------------------------------------------+"
             echo ""
