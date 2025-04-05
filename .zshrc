@@ -17,7 +17,7 @@ alias gbr='git branch --show-current'
 alias gus='git reset HEAD --'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
 alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
-alias rm='trash-put'
+alias rm='trash'
 
 # Other
 setopt AUTO_CD
