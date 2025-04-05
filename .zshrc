@@ -29,6 +29,14 @@ function chpwd() { ls }
 precmd () {
     print
     print
+
+    # Check for uncommitted changes in dotfiles
+    local dotfiles_dir="$HOME/ghq/github.com/tokizuoh/dotfiles"
+    if [ -d "$dotfiles_dir" ]; then
+        if cd "$dotfiles_dir" && git status --porcelain | grep -q .; then
+            echo "\033[31m⚠️ Warning: dotfiles have uncommitted changes! Commit them now!\033[0m"
+        fi
+    fi
 }
 
 ## Exclude frequently used commands before registering them in history
