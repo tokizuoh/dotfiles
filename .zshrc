@@ -40,6 +40,7 @@ precmd () {
             echo "| ⚠️  Warning: dotfiles have uncommitted changes!                 |"
             echo "| Commit them now!                                              |"
             echo "+---------------------------------------------------------------+"
+            echo ""
             echo "Changed files:"
             echo "$changes" | sed 's/^/- /'
             echo "\033[0m"
