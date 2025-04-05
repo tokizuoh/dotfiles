@@ -33,7 +33,7 @@ precmd () {
     # Check for uncommitted changes in dotfiles
     local dotfiles_dir="$HOME/ghq/github.com/tokizuoh/dotfiles"
     if [ -d "$dotfiles_dir" ]; then
-        if cd "$dotfiles_dir" && git status --porcelain | grep -q .; then
+        if git -C "$dotfiles_dir" status --porcelain | grep -q .; then
             echo ""
             echo "\033[90m+---------------------------------------------------------------+"
             echo "| ⚠️  Warning: dotfiles have uncommitted changes!                |"
