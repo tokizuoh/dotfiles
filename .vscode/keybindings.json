@@ -26,5 +26,10 @@
   {
     "key": "cmd+k",
     "command": "workbench.action.splitEditorRight"
+  },
+  {
+    "key": "cmd+alt+w",
+    "command": "workbench.action.closeOtherEditors",
+    "when": "editorTextFocus"
   }
 ]
