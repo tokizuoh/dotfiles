@@ -46,3 +46,10 @@ if [ ! -d "$git_config_path" ]; then
   touch ${git_config_path}/ignore
 fi
 ln -sfnv ${PWD}/.gitignore_global ${git_config_path}/ignore
+
+# WezTerm
+wezterm_config_path=${HOME}/.config/wezterm
+if [ ! -d "$wezterm_config_path" ]; then
+  mkdir -p "$wezterm_config_path"
+fi
+ln -sfnv ${PWD}/wezterm/wezterm.lua ${wezterm_config_path}/wezterm.lua
