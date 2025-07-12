@@ -4,7 +4,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 function git_prompt_info() {
     local branch=$(git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
     if [ -n "$branch" ]; then
-        echo " git:(%F{#F2AD84}$branch%f)"
+        echo " git:(%F{#C7DC68}$branch%f)"
     fi
 }
 
