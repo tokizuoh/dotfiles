@@ -1,5 +1,21 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Git prompt function
+function git_prompt_info() {
+    local branch=$(git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
+    if [ -n "$branch" ]; then
+        echo " git:(%F{#F2AD84}$branch%f)"
+    fi
+}
+
+# Custom prompt
+setopt PROMPT_SUBST
+PROMPT='%B%F{#00A0FF}%~%f$(git_prompt_info)%b
+'
+
+# Set input text color to bright white
+zle_highlight=(default:fg=white,bold)
+
 # ref: https://github.com/sharkdp/bat
 export BAT_THEME="Monokai Extended"
 
@@ -36,7 +52,7 @@ precmd () {
         local changes
         changes=$(git -C "$dotfiles_dir" status --porcelain)
         if [ -n "$changes" ]; then
-            echo "\033[90m+---------------------------------------------------------------+"
+            echo "\033[37m+---------------------------------------------------------------+"
             echo "| ⚠️  Warning: dotfiles have uncommitted changes!                |"
             echo "| Commit them now!                                              |"
             echo "+---------------------------------------------------------------+"
@@ -84,3 +100,4 @@ export NVM_DIR="$HOME/.nvm"
 
 ## nest
 export PATH="$HOME/.nest/bin:$PATH"
+export LEFTHOOK=0
