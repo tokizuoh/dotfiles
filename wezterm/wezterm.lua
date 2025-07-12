@@ -159,6 +159,15 @@ config.mouse_bindings = {
 }
 -- タブを下に表示（デフォルトでは上にある）
 config.tab_bar_at_bottom = true
+-- タブの最大幅を設定（デフォルトは16）
+config.tab_max_width = 32
+-- タブバーのフォント設定
+config.window_frame = {
+    -- タブバーのフォント（デフォルトはRoboto Bold）
+    font = wezterm.font { family = 'HackGen Console', weight = 'Bold' },
+    -- タブバーのフォントサイズ（これでタブの高さも変わる）
+    font_size = 20.0,
+}
 -- ウィンドウを閉じる時に確認を表示
 config.window_close_confirmation = 'NeverPrompt'
 
