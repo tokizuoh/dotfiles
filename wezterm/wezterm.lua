@@ -25,6 +25,8 @@ config.colors = {
     cursor_bg = '#1A4E7A',
     cursor_fg = 'white',
     cursor_border = '#1A4E7A',
+    -- 通常のテキスト色を純白に設定
+    foreground = '#FFFFFF',
 }
 
 -- キーバインド
