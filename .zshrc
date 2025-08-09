@@ -101,3 +101,5 @@ export NVM_DIR="$HOME/.nvm"
 ## nest
 export PATH="$HOME/.nest/bin:$PATH"
 export LEFTHOOK=0
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
