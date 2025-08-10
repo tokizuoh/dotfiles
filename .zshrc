@@ -34,6 +34,7 @@ alias gus='git reset HEAD --'
 alias tree='cmd="command tree -a -I .git"; echo $cmd; eval ${cmd}'
 alias rmb='git branch --merged | xargs -n 1 | egrep -v "main|develop|\*" | xargs git branch -d'
 alias rm='trash'
+alias aed='open -a "Android Studio"'
 
 # Other
 setopt AUTO_CD
