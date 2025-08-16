@@ -53,3 +53,10 @@ if [ ! -d "$wezterm_config_path" ]; then
   mkdir -p "$wezterm_config_path"
 fi
 ln -sfnv ${PWD}/wezterm/wezterm.lua ${wezterm_config_path}/wezterm.lua
+
+# Claude
+claude_config_path=${HOME}/.claude
+if [ ! -d "$claude_config_path" ]; then
+  mkdir -p "$claude_config_path"
+fi
+ln -sfnv ${PWD}/.claude/CLAUDE.md ${claude_config_path}/CLAUDE.md
