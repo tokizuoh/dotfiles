@@ -104,3 +104,5 @@ export PATH="$HOME/.nest/bin:$PATH"
 export LEFTHOOK=0
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+export PATH="$HOME/.local/bin:$PATH"
