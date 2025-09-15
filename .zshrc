@@ -106,3 +106,5 @@ export LEFTHOOK=0
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
