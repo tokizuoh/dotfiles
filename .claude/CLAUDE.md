@@ -11,3 +11,4 @@ This is my global Claude Code configuration directory (`~/.claude`) that sets up
 - Editツールを使用する前に、必ず変更理由と変更内容の概要を説明してから、ユーザーの承認を得てからコードの変更を実行すること(ルールA)
 - ルールA の際はわかりやすさのためにどういう変更が入るかのコード上のdiffを提示すること
 - マークダウンで何かをまとめたりするときは .tokizuoh ディレクトリ配下に書くこと
+- .tokizuoh ディレクトリ配下に置くファイル名は `20251108-XXX.md` のような日付始まりにすること
