@@ -60,3 +60,9 @@ if [ ! -d "$claude_config_path" ]; then
   mkdir -p "$claude_config_path"
 fi
 ln -sfnv ${PWD}/.claude/CLAUDE.md ${claude_config_path}/CLAUDE.md
+
+# Claude plugins (skills-dir auto-load)
+if [ ! -d "${claude_config_path}/skills" ]; then
+  mkdir -p "${claude_config_path}/skills"
+fi
+ln -sfnv ${PWD}/config ${claude_config_path}/skills/tokizuoh-skills
