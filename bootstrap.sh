@@ -49,9 +49,7 @@ if [ ! -d "$wezterm_config_path" ]; then
 fi
 ln -sfnv ${PWD}/wezterm/wezterm.lua ${wezterm_config_path}/wezterm.lua
 
-# AI agent instructions (AGENTS.md as the single master)
-# Claude Code reads ~/.claude/CLAUDE.md, Codex reads ~/.codex/AGENTS.md.
-# Both are symlinks to this repo's AGENTS.md so only one file is managed.
+# AI agent instructions
 agents_md=${PWD}/AGENTS.md
 
 claude_config_path=${HOME}/.claude
