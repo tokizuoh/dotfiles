@@ -49,12 +49,20 @@ if [ ! -d "$wezterm_config_path" ]; then
 fi
 ln -sfnv ${PWD}/wezterm/wezterm.lua ${wezterm_config_path}/wezterm.lua
 
-# Claude
+# AI agent instructions
+agents_md=${PWD}/AGENTS.md
+
 claude_config_path=${HOME}/.claude
 if [ ! -d "$claude_config_path" ]; then
   mkdir -p "$claude_config_path"
 fi
-ln -sfnv ${PWD}/.claude/CLAUDE.md ${claude_config_path}/CLAUDE.md
+ln -sfnv ${agents_md} ${claude_config_path}/CLAUDE.md
+
+codex_config_path=${HOME}/.codex
+if [ ! -d "$codex_config_path" ]; then
+  mkdir -p "$codex_config_path"
+fi
+ln -sfnv ${agents_md} ${codex_config_path}/AGENTS.md
 
 # Claude plugins (skills-dir auto-load)
 if [ ! -d "${claude_config_path}/skills" ]; then
