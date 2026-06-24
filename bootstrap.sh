@@ -58,6 +58,10 @@ if [ ! -d "$claude_config_path" ]; then
 fi
 ln -sfnv ${agents_md} ${claude_config_path}/CLAUDE.md
 
+# Claude settings & statusline
+ln -sfnv ${PWD}/claude/statusline.sh ${claude_config_path}/statusline.sh
+ln -sfnv ${PWD}/claude/settings.json ${claude_config_path}/settings.json
+
 codex_config_path=${HOME}/.codex
 if [ ! -d "$codex_config_path" ]; then
   mkdir -p "$codex_config_path"
