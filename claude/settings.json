@@ -3,6 +3,10 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
     "swiftui-expert@swiftui-expert-skill": true,
@@ -16,11 +20,13 @@
       }
     }
   },
+  "language": "Japanese",
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "skipAutoPermissionPrompt": true,
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  }
+  "voiceEnabled": true
 }
