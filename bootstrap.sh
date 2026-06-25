@@ -24,6 +24,11 @@ else
 fi
 brew bundle
 
+# markitdown (PDF/Office -> Markdown) via uv tool
+# Note: the [all] extra is required. PDF conversion depends on
+# pdfminer.six / pdfplumber, which live in the optional `pdf` extra.
+uv tool install 'markitdown[all]'
+
 # Visual Studio Code
 ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ln -sfnv ${PWD}/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
