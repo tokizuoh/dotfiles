@@ -18,11 +18,18 @@
         "source": "github",
         "repo": "warpdotdev/claude-code-warp"
       }
+    },
+    "cosense-cli": {
+      "source": {
+        "source": "github",
+        "repo": "helpfeel/cosense-cli"
+      }
     }
   },
   "language": "Japanese",
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "tui": "fullscreen",
   "voice": {
     "enabled": true,
     "mode": "hold"
