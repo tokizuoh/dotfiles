@@ -24,10 +24,23 @@ else
 fi
 brew bundle
 
+# mise
+mise_config_path=${HOME}/.config/mise
+if [ ! -d "$mise_config_path" ]; then
+  mkdir -p "$mise_config_path"
+fi
+ln -sfnv ${PWD}/mise/config.toml ${mise_config_path}/config.toml
+mise install
+
 # markitdown (PDF/Office -> Markdown) via uv tool
 # Note: the [all] extra is required. PDF conversion depends on
 # pdfminer.six / pdfplumber, which live in the optional `pdf` extra.
-uv tool install 'markitdown[all]'
+# markitdown 0.1.6 depends on a pre-release of azure-ai-contentunderstanding,
+# which uv rejects by default.
+mise exec -- uv tool install --prerelease=allow 'markitdown[all]==0.1.6'
+
+# trash-cli
+mise exec -- uv tool install 'trash-cli==0.24.5.26'
 
 # Visual Studio Code
 ln -sfnv ${PWD}/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json

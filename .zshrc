@@ -75,6 +75,10 @@ if type rbenv > /dev/null 2>&1; then
     eval "$(rbenv init - zsh)"
 fi
 
+if type mise > /dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
+
 ## Checkout PR branch
 function peco-checkout-pull-request () {
     local selected_pr_id=$(gh pr list | peco | awk '{ print $1 }')
