@@ -35,6 +35,7 @@
     "mode": "hold"
   },
   "agentPushNotifEnabled": true,
+  "theme": "dark",
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
 }
