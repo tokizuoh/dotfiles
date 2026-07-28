@@ -1,7 +1,6 @@
 [user]
     email = tokizuoh@gmail.com
     name = tokizuoh
-	signingkey = 81BEADC8008C8EFE
 [init]
     defaultBranch = main
 [push]
@@ -14,5 +13,3 @@
     prune = true
 [log]
     date = iso
-[commit]
-	gpgsign = true
