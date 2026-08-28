@@ -34,7 +34,7 @@
     "enabled": true,
     "mode": "hold"
   },
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "agentPushNotifEnabled": true
+  "voiceEnabled": true
 }
