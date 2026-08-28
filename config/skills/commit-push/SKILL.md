@@ -40,7 +40,6 @@ git branch --show-current
 
 - prefix を付ける（`feat: ` / `fix: ` / `refactor: ` / `rename: ` / `remove: ` など）
 - prefix 以外は日本語で書く
-- **co-author は含めない**（`Co-Authored-By` を付けない）
 
 ### 4. プッシュ
 
