@@ -90,4 +90,4 @@ ln -sfnv ${agents_md} ${codex_config_path}/AGENTS.md
 if [ ! -d "${claude_config_path}/skills" ]; then
   mkdir -p "${claude_config_path}/skills"
 fi
-ln -sfnv ${PWD}/config ${claude_config_path}/skills/tokizuoh-skills
+ln -sfnv ${PWD}/config ${claude_config_path}/skills/user
