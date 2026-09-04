@@ -34,8 +34,13 @@
     "enabled": true,
     "mode": "hold"
   },
-  "agentPushNotifEnabled": true,
   "theme": "dark",
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
 }
