@@ -3,7 +3,7 @@ bat = "0.26.1"
 ghq = "1.10.1"
 github-cli = "2.95.0"
 "github:RivoLink/leaf" = "1.26.0"
-"github:d-kuro/gwq" = "0.1.1"
+"github:d-kuro/gwq" = { version = "0.1.1", rename_exe = "gwt" }
 hub = "2.14.2"
 peco = "0.6.0"
 uv = "0.6.12"
