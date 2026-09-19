@@ -110,9 +110,10 @@ find . -maxdepth 3 -ipath '*pull_request_template*' -not -path '*/node_modules/*
 ### 7. Draft PR の作成
 
 本文はファイル経由で渡す（改行やバッククォートがシェルで崩れないようにするため）。一時ファイルはスクラッチパッドがあればそこに置く。
+assignee には必ず自分（`@me`）を付ける。
 
 ```bash
-gh pr create --draft --base <base> --title "<title>" --body-file <body-file>
+gh pr create --draft --base <base> --title "<title>" --body-file <body-file> --assignee @me
 ```
 
 作成後、PR の URL をユーザーに報告して終了する。
