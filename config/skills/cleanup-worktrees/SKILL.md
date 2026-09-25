@@ -13,10 +13,8 @@ allowed-tools: Bash(git fetch:*), Bash(git worktree list:*), Bash(git worktree r
 - マージ済みかどうかは `git merge-base --is-ancestor` では判定しない。PR の状態で判定する
   - squash マージされたブランチは、マージ済みでも ancestor にならない
   - コミットを積んでいない作りかけのブランチは、未マージでも ancestor になる
-  - 両方とも実際に起きた（sunnies リポジトリで 2026-09-24 に確認）
 - untracked ファイルがあると `git worktree remove` に `--force` が要る
-  - 実際に残っていたのは Gradle が自動生成する `mobile/gradle/gradle-daemon-jvm.properties` だった
-  - ただし消してよいファイルはリポジトリごとに違うので、ファイル名を決め打ちせずユーザーに確認する
+  - ビルドツールの自動生成ファイルなど、消してよいファイルはリポジトリごとに違うので、ファイル名を決め打ちせずユーザーに確認する
 - CLOSED の PR や PR がないブランチは作業途中の可能性があるので、自動では消さない
 
 ## ワークフロー
