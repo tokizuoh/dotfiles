@@ -1,24 +1,26 @@
 ---
 name: markitdown
-description: PDF・Office ファイル（Word/Excel/PowerPoint）・画像・Web ページの URL など、Claude が直接読みにくい資料を markitdown CLI で Markdown に変換し、内容を読めるようにする。ユーザーが PDF などのファイルパスや URL を渡して「読んで」「変換して」「要約して」「参考にして」と言ったとき、または Claude が直接読めない形式の資料を渡されたときに使用する。
+description: PDF・Office ファイル（Word/Excel/PowerPoint）・Web ページの URL など、Claude が直接読みにくい資料を markitdown CLI で Markdown に変換し、内容を読めるようにする。ユーザーが PDF などのファイルパスや URL を渡して「読んで」「変換して」「要約して」「参考にして」と言ったとき、または Claude が直接読めない形式の資料を渡されたときに使用する。画像は Read で直接読めるので対象外。
 allowed-tools: Bash(markitdown:*), Bash(mkdir:*), Bash(date:*), Read, Write
 ---
 
 # markitdown で資料を Markdown に変換して読む（tokizuoh版）
 
-PDF・Office ファイル・画像・Web ページなど、Claude が直接読みにくい資料を
+PDF・Office ファイル・Web ページなど、Claude が直接読みにくい資料を
 [microsoft/markitdown](https://github.com/microsoft/markitdown) の CLI で Markdown に
 変換し、変換結果を読んでユーザーの依頼に応える。
 
 前提: `markitdown` は uv tool で常設インストール済み（`~/.local/bin/markitdown`、PATH 済み）。
-未インストールなら dotfiles の `bootstrap.sh` が `uv tool install 'markitdown[all]'` を実行する。
+未インストールなら dotfiles の `bootstrap.sh` にあるインストールコマンドを使う。
 
 ## 入力の種類
 
 markitdown CLI は以下を引数で直接受け取れる（実機確認済み）。
 
-- ローカルファイル: PDF / Word(.docx) / Excel(.xlsx) / PowerPoint(.pptx) / 画像 など
+- ローカルファイル: PDF / Word(.docx) / Excel(.xlsx) / PowerPoint(.pptx) など
 - Web ページの URL: `markitdown "https://example.com"` のように URL をそのまま渡せる
+
+画像も受け付けるが本文は出力されない（実機確認済み）。画像は Read で直接読む。
 
 ## ワークフロー
 
