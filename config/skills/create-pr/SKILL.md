@@ -1,7 +1,7 @@
 ---
 name: create-pr
-description: 現在のブランチから GitHub の Draft PR を作成する個人用スキル。リポジトリに PR テンプレートがあればそれに従い、なければ既定フォーマット（概要/変更/動作確認/関連）で本文を書く。未 push のコミットがあれば push してから作成する。「PR作って」「プルリク出して」「create-prで」「PRにして」などのリクエストで使用する。
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git branch:*), Bash(git rev-parse:*), Bash(git push:*), Bash(gh repo view:*), Bash(gh pr view:*), Bash(gh pr create:*), Bash(find:*), Bash(ls:*), Bash(cat:*)
+description: 現在のブランチから GitHub の Draft PR を作成する個人用スキル。リポジトリに PR テンプレートがあればそれに従い、なければ既定フォーマット（概要/変更/動作確認/関連）で本文を書く。未コミットの変更があれば commit-push スキルの手順でコミット・push してから作成する。未 push のコミットがあれば push してから作成する。「PR作って」「プルリク出して」「create-prで」「PRにして」などのリクエストで使用する。
+allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git branch:*), Bash(git rev-parse:*), Bash(git add:*), Bash(git commit:*), Bash(git switch:*), Bash(git checkout:*), Bash(git push:*), Bash(gh repo view:*), Bash(gh pr view:*), Bash(gh pr create:*), Bash(find:*), Bash(ls:*), Bash(cat:*)
 ---
 
 # Draft PR 作成（tokizuoh版）
@@ -21,13 +21,21 @@ gh repo view --json defaultBranchRef --jq .defaultBranchRef.name
 gh pr view --json url 2>/dev/null
 ```
 
-以下の場合は中断してユーザーに報告する。
+未コミットの変更がある場合は、下の判定より先に手順2へ進む。デフォルトブランチ上の変更でも、手順2のブランチ確認で新規ブランチを切れば PR にできるため。
 
-- 未コミットの変更がある: PR に含めるべきか判断できないため。commit-push スキルの利用を提案する
+未コミットの変更がない場合は、以下に当てはまれば中断してユーザーに報告する。
+
 - 現在のブランチがデフォルトブランチ: PR の head にできないため
-- 既にこのブランチの PR が存在する: URL を伝える
+- 既にこのブランチの PR が存在する: URL を伝える（手順2でコミットした変更は push 済みなので既存 PR に反映されている）
 
-### 2. push
+### 2. 未コミット変更のコミット
+
+未コミットの変更がある場合のみ行う。
+
+commit-push スキルを呼び出し、その手順（ブランチ確認・コミット・push）に従う。
+commit-push の手順は「報告して終了する」で終わるが、ここでは終了せず手順1に戻って状態を確認し直す。
+
+### 3. push
 
 upstream が無い、またはリモートより進んでいる場合は push する。
 
@@ -35,7 +43,7 @@ upstream が無い、またはリモートより進んでいる場合は push �
 git push -u origin <branch-name>
 ```
 
-### 3. 差分の把握
+### 4. 差分の把握
 
 `<base>` はデフォルトブランチ。
 
@@ -47,7 +55,7 @@ git diff <base>...HEAD
 
 本文はこのブランチの全コミットを対象に書く。最新コミットだけを見て書くと変更が漏れるため。
 
-### 4. PR テンプレートの探索
+### 5. PR テンプレートの探索
 
 GitHub が PR テンプレートとして認識する場所を探す（ファイル名は大文字小文字を区別しない）。
 
@@ -62,7 +70,7 @@ find . -maxdepth 3 -ipath '*pull_request_template*' -not -path '*/node_modules/*
 - 複数見つかった: どれを使うかユーザーに確認する
 - 見つからない: 下の既定フォーマットを使う
 
-### 5. 本文の作成
+### 6. 本文の作成
 
 #### 既定フォーマット
 
@@ -102,12 +110,12 @@ find . -maxdepth 3 -ipath '*pull_request_template*' -not -path '*/node_modules/*
 - TODO
 ```
 
-### 6. タイトルの確認
+### 7. タイトルの確認
 
 差分から PR タイトル案を作り、ユーザーに提示してタイトルを確認する。ユーザーごと・リポジトリごとに好みが違うため、案をそのまま使わず必ず確認を取る。
 本文もあわせて提示し、修正があれば反映する。
 
-### 7. Draft PR の作成
+### 8. Draft PR の作成
 
 本文はファイル経由で渡す（改行やバッククォートがシェルで崩れないようにするため）。一時ファイルはスクラッチパッドがあればそこに置く。
 assignee には必ず自分（`@me`）を付ける。
