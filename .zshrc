@@ -98,6 +98,14 @@ function switch-default-branch-if-exists () {
     fi
 }
 
+## Change directory to a git worktree
+function gwtcd () {
+    local worktree_path=$(gwt get "$@")
+    if [ -n "$worktree_path" ]; then
+        cd "$worktree_path"
+    fi
+}
+
 ## nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
