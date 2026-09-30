@@ -1,6 +1,6 @@
 ---
 name: parallel-worktree
-description: 作業を独立したタスクに分け、タスクごとに gwq で git worktree を作ってサブエージェントに並列で実装させ、各ブランチを push して Draft PR まで作る個人用スキル。今いるブランチを汚さずに実装させたいときや、複数の変更を並列で進めたいときに使う。タスクが1つでもよい。「worktree で並列に実装して」「今のブランチを汚さずにやって」「parallel-worktreeで」などのリクエストで使用する。
+description: 作業を独立したタスクに分け、タスクごとに gwq で git worktree を作ってサブエージェントに並列で実装させ、各ブランチを push して Draft PR まで作る個人用スキル。今いるブランチを汚さずに実装させたいときや、複数の変更を並列で進めたいときに使う。タスクが1つでもよく、並列にする必要がなく単に git worktree で作業させたいときもこのスキルを使う。「worktree で並列に実装して」「worktree でやって」「worktree で実装して」「今のブランチを汚さずにやって」「parallel-worktreeで」などのリクエストで使用する。
 allowed-tools: Bash(gwt add:*), Bash(gwt list:*), Bash(git worktree list:*), Bash(git status:*), Bash(git branch:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git diff:*), Bash(git fetch:*), Bash(git push:*), Bash(gh repo view:*), Bash(gh pr view:*), Bash(gh pr create:*), Bash(find:*)
 ---
 
