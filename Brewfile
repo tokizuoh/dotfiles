@@ -1,6 +1,7 @@
 cask_args appdir: "/Applications"
 
 brew "act"
+brew "ccusage"
 brew "cloc"
 brew "ffmpeg"
 brew "fswatch"
