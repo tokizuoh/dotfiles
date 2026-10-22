@@ -37,7 +37,9 @@ mise install
 # pdfminer.six / pdfplumber, which live in the optional `pdf` extra.
 # markitdown 0.1.6 depends on a pre-release of azure-ai-contentunderstanding,
 # which uv rejects by default.
-mise exec -- uv tool install --prerelease=allow 'markitdown[all]==0.1.6'
+# Python is pinned because uv otherwise picks the newest python3 on PATH
+# (Homebrew's, pulled in by pipx), and onnxruntime may not ship wheels for it yet.
+mise exec -- uv tool install --python 3.14 --prerelease=allow 'markitdown[all]==0.1.6'
 
 # trash-cli
 mise exec -- uv tool install 'trash-cli==0.24.5.26'
