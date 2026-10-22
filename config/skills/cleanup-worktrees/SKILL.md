@@ -1,7 +1,7 @@
 ---
 name: cleanup-worktrees
-description: マージ済みの PR に対応する git worktree を削除する個人用スキル。マージ済みかどうかは PR の状態で判定し、未コミットの変更や PR に入っていないローカルコミットがある worktree は残す。ローカルブランチの削除はユーザーに確認してから行う。「マージ済みの worktree を消して」「worktree 掃除して」「cleanup-worktreesで」などのリクエストで使用する。
-allowed-tools: Bash(git fetch:*), Bash(git worktree list:*), Bash(git worktree remove:*), Bash(git worktree prune:*), Bash(git status:*), Bash(git rev-parse:*), Bash(git branch:*), Bash(gh pr list:*)
+description: マージ済みの PR に対応する git worktree を削除する個人用スキル。マージ済みかどうかは PR の状態で判定し、未コミットの変更や PR に入っていないローカルコミットがある worktree、Claude Code のセッションが開いている worktree は残す。既定は今のリポジトリだけを対象にし、頼まれれば gwq 管理下の全リポジトリを対象にする。ローカルブランチの削除はユーザーに確認してから行う。「マージ済みの worktree を消して」「worktree 掃除して」「全リポジトリの worktree を掃除して」「cleanup-worktreesで」などのリクエストで使用する。
+allowed-tools: Bash(git fetch:*), Bash(git worktree list:*), Bash(git worktree remove:*), Bash(git worktree prune:*), Bash(git status:*), Bash(git rev-parse:*), Bash(git branch:*), Bash(gh pr list:*), Bash(gwt list:*), Bash(ps:*), Bash(lsof:*)
 ---
 
 # マージ済み worktree の削除（tokizuoh版）
@@ -16,8 +16,25 @@ allowed-tools: Bash(git fetch:*), Bash(git worktree list:*), Bash(git worktree r
 - untracked ファイルがあると `git worktree remove` に `--force` が要る
   - ビルドツールの自動生成ファイルなど、消してよいファイルはリポジトリごとに違うので、ファイル名を決め打ちせずユーザーに確認する
 - CLOSED の PR や PR がないブランチは作業途中の可能性があるので、自動では消さない
+- Claude Code のセッションが cwd を置いている worktree は消さない。作業中のセッションの足元を消すと、そのセッションが壊れるため
+  - プロセスの cwd は `lsof -c claude` では引けない。claude CLI の lsof 上のコマンド名はバージョン番号（例: `2.1.291`）になるため。`ps` の `comm` で PID を取ってから `lsof -p` で引く
+  - 分かるのはセッションを**起動した**ディレクトリだけ。メインの worktree で起動したセッションがサブエージェントで別の worktree を触っている場合は検出できないので、parallel-worktree の作業中には実行しない
 
 ## ワークフロー
+
+### 0. 対象範囲
+
+- 既定: 今のリポジトリだけ
+- 「全リポジトリ」「全部」などと頼まれた場合: gwq 管理下の全 worktree
+
+全リポジトリの場合は、以下で worktree の一覧を取り、各 worktree のメインのリポジトリでまとめる。
+
+```bash
+gwt list -g --json
+git -C <path> rev-parse --path-format=absolute --git-common-dir
+```
+
+`--git-common-dir` の値から末尾の `/.git` を除いたものがメインのリポジトリ。以降の手順 1〜6 をリポジトリごとに `git -C <repo>` / `cd <repo> && gh ...` で行い、手順 3 の表と手順 6 の報告はリポジトリ列を足して1つにまとめる。手順 5・7 の確認も全リポジトリ分を一度にまとめる。
 
 ### 1. リモートの最新化
 
@@ -51,10 +68,19 @@ git -C <path> rev-parse HEAD
 - PR が複数返ってきた場合は、`headRefOid` がローカルの HEAD と一致するものを採用する。一致するものがなければ一番新しいもの（`number` が最大）を採用する
 - `status --porcelain` の行は、先頭が `??` なら untracked、それ以外は追跡中ファイルの変更として数える
 
+Claude Code のセッションの cwd は、worktree ごとではなく1回だけ取る。
+
+```bash
+pids=$(ps -axo pid=,comm= | awk '$2=="claude"{print $1}' | paste -sd, -)
+[ -n "$pids" ] && lsof -a -d cwd -p "$pids" -Fn | sed -n 's/^n//p' | sort -u
+```
+
+出力のいずれかが worktree のパスと一致するか、`<path>/` で始まれば「セッションあり」とする。
+
 結果を表にしてユーザーに見せる。
 
-| ブランチ | パス | PR | 状態 | HEAD 一致 | 追跡中の変更 | untracked | 判定 |
-|---|---|---|---|---|---|---|---|
+| ブランチ | パス | PR | 状態 | HEAD 一致 | 追跡中の変更 | untracked | セッション | 判定 |
+|---|---|---|---|---|---|---|---|---|
 
 ### 4. 削除候補の選定
 
@@ -63,10 +89,11 @@ git -C <path> rev-parse HEAD
 - PR の `state` が `MERGED`
 - ローカルの HEAD が PR の `headRefOid` と同じ（違えば PR に入っていないローカルコミットがある）
 - 追跡中のファイルに変更がない（untracked だけなら可）
+- Claude Code のセッションがない
 
 それ以外は残す。残す理由は次のいずれかで記録しておく。
 
-- CLOSED / OPEN / PR なし / 変更あり / ローカルコミットあり / detached / locked / prunable
+- CLOSED / OPEN / PR なし / 変更あり / ローカルコミットあり / セッションあり / detached / locked / prunable
 
 削除候補がなければ、表と残した理由を報告して手順 6 へ進む。
 
