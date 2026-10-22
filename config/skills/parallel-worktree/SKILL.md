@@ -1,7 +1,7 @@
 ---
 name: parallel-worktree
 description: 作業を独立したタスクに分け、タスクごとに gwq で git worktree を作ってサブエージェントに並列で実装させ、各ブランチを push して Draft PR まで作る個人用スキル。今いるブランチを汚さずに実装させたいときや、複数の変更を並列で進めたいときに使う。タスクが1つでもよく、並列にする必要がなく単に git worktree で作業させたいときもこのスキルを使う。「worktree で並列に実装して」「worktree でやって」「worktree で実装して」「今のブランチを汚さずにやって」「parallel-worktreeで」などのリクエストで使用する。
-allowed-tools: Bash(gwt add:*), Bash(gwt list:*), Bash(git worktree list:*), Bash(git status:*), Bash(git branch:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git diff:*), Bash(git fetch:*), Bash(git push:*), Bash(gh repo view:*), Bash(gh pr view:*), Bash(gh pr create:*), Bash(find:*)
+allowed-tools: Bash(gwt add:*), Bash(gwt list:*), Bash(git worktree list:*), Bash(git status:*), Bash(git branch:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git diff:*), Bash(git fetch:*), Bash(git push:*), Bash(gh repo view:*), Bash(gh pr view:*), Bash(gh pr create:*), Bash(git show-ref:*), Bash(git ls-remote:*), Bash(find:*)
 ---
 
 # worktree で並列実装
@@ -46,7 +46,13 @@ git worktree list
 | # | タスク | ブランチ名 | 基点 | PR の base |
 |---|---|---|---|---|
 
-- ブランチ名は prefix（`feat/` / `fix/` / `refactor/` など）を付け、内容が分かる名前にする。既存のブランチ・worktree と重ならないようにする
+- ブランチ名は prefix（`feat/` / `fix/` / `refactor/` など）を付け、内容が分かる名前にする
+- 表を見せる前に、ブランチ名がローカル・リモートの既存ブランチと重ならないか確かめる。重なったら末尾に `-2`、`-3` … を付けて空いている名前にする
+
+  ```bash
+  git show-ref --verify --quiet refs/heads/<branch>   # 終了コード 0 なら重なっている
+  git ls-remote --exit-code --heads origin <branch>   # 終了コード 0 なら重なっている
+  ```
 - 基点の既定は今のブランチの HEAD。デフォルトブランチから切りたいなどの希望があればそれに従う
 - PR の base は基点のブランチにする
 
@@ -121,4 +127,4 @@ cd <worktree> && gh pr create --draft --base <base> --title "<title>" --body-fil
 
 - PR を作ったもの: ブランチ名、worktree のパス、PR の URL
 - PR を作らなかったもの: ブランチ名、worktree のパス、理由
-- worktree は残してあること。マージ後は cleanup-worktrees スキルで消せること
+- worktree は残してあること。マージ後は cleanup-worktrees スキルで消せること（その worktree で Claude Code を開いたままだと消されない）
