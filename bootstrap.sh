@@ -93,3 +93,4 @@ if [ ! -d "${claude_config_path}/skills" ]; then
   mkdir -p "${claude_config_path}/skills"
 fi
 ln -sfnv ${PWD}/config ${claude_config_path}/skills/user
+ln -sfnv ${PWD}/claude/mods/sebone ${claude_config_path}/skills/sebone

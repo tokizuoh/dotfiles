@@ -1,0 +1,6 @@
+{
+  "name": "sebone",
+  "version": "0.1.0",
+  "description": "プロンプト送信のたびに、自分で育てる名言ファイルから1行をプロンプト上に出す",
+  "types": "./types/index.d.ts"
+}
