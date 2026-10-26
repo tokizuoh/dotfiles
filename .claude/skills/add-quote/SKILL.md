@@ -1,7 +1,7 @@
 ---
 name: add-quote
 description: sebone mod がプロンプト上に出す名言ファイル（claude/quotes.json）に名言を1件足し、develop にコミットする dotfiles リポジトリ専用スキル。「名言追加して」「この一文を背骨に入れて」「add-quote で」などのリクエストで使用する。
-allowed-tools: Bash(jq:*), Bash(mv:*), Bash(git -C /Users/tokizo/ghq/github.com/tokizuoh/dotfiles status:*), Bash(git -C /Users/tokizo/ghq/github.com/tokizuoh/dotfiles branch:*), Bash(git -C /Users/tokizo/ghq/github.com/tokizuoh/dotfiles diff:*), Bash(git -C /Users/tokizo/ghq/github.com/tokizuoh/dotfiles add claude/quotes.json), Bash(git -C /Users/tokizo/ghq/github.com/tokizuoh/dotfiles commit:*)
+allowed-tools: Bash(jq:*), Bash(mv:*), Bash(realpath:*)
 ---
 
 # 名言の追加
@@ -10,13 +10,15 @@ allowed-tools: Bash(jq:*), Bash(mv:*), Bash(git -C /Users/tokizo/ghq/github.com/
 
 ## 書き込み先
 
-mod は次の絶対パスを読む（`claude/mods/sebone/hooks/register.tsx` の `QUOTES_PATH`）。worktree の中から呼ばれても、必ずこちらに書き込む。worktree 側のファイルを直しても表示は変わらない。
+mod は `~/.claude/skills/sebone` のリンク先（実体の `claude/mods/sebone`）から2つ上の `claude/quotes.json` を読む（`claude/mods/sebone/hooks/register.tsx` の `quotesPath`）。worktree の中から呼ばれても、必ずこちらに書き込む。worktree 側のファイルを直しても表示は変わらない。
 
-```
-/Users/tokizo/ghq/github.com/tokizuoh/dotfiles/claude/quotes.json
+ホームや ghq の置き場所は PC ごとに違うので、パスは毎回リンクから求める。
+
+```bash
+realpath ~/.claude/skills/sebone
 ```
 
-以下では `REPO=/Users/tokizo/ghq/github.com/tokizuoh/dotfiles`、`Q=$REPO/claude/quotes.json` とする。
+出力から末尾の `/claude/mods/sebone` を除いたものを `REPO`、`$REPO/claude/quotes.json` を `Q` とする。以下のコマンドでは、`$REPO` と `$Q` を解決した絶対パスに置き換えて実行する。リンクが無い・解決できないときは、bootstrap.sh が未実行の可能性があるので何もせずユーザーに報告して止まる。
 
 ## ワークフロー
 
