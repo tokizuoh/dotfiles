@@ -22,18 +22,32 @@ const SURFACES = ['terminal', 'desktop'] as const
 
 const QUOTE_TEXT = /^🗿 (骨は守る|自分が自分をどう思うか)$/
 
-test('セッション開始時に名言ファイルの1件が本文だけで表示される', async ($, on) => {
+test('セッション開始時に名言ファイルの1件が Desktop に本文だけで表示される', async ($, on) => {
   on('fs.read', () => ({ value: JSON.stringify(QUOTES) }))
   on('session.start', (_, e) => ({ cwd: e.cwd }))
 
   await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
 
-  for (const surface of SURFACES) {
-    const ui = await $.ui.mount({ ...BAND, surface })
-    const row = await ui.find({ type: 'Text', text: QUOTE_TEXT })
-    expect(row?.text).toMatch(QUOTE_TEXT)
-    await ui.unmount()
-  }
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  const row = await ui.find({ type: 'Text', text: QUOTE_TEXT })
+  expect(row?.text).toMatch(QUOTE_TEXT)
+  await ui.unmount()
+})
+
+test('ターミナルには名言を出さず、バンドはエンジンに任せる', async ($, on) => {
+  on('fs.read', () => ({ value: JSON.stringify(QUOTES) }))
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+    return <Text>engine</Text>
+  })
+
+  await $.session.start({ cwd: '/', surface: 'terminal', isInteractive: true })
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'terminal' })
+  expect(await ui.find({ type: 'Text', text: QUOTE_TEXT })).toBeUndefined()
+  expect((await ui.find({ type: 'Text', text: /engine/ }))?.text).toBe('engine')
+  await ui.unmount()
 })
 
 test('mod の実体の2つ上にある quotes.json を、ホームの場所によらず読む', async ($, on) => {

@@ -50,6 +50,10 @@ export const register: Register = on => {
   }).catch(($, e, next) => next(e))
 
   on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
+    if (e.surface !== 'desktop') {
+      return next(e)
+    }
+
     const quote = await read($, current)
     if (e.props.hasSurvey || quote === null) {
       return next(e)
