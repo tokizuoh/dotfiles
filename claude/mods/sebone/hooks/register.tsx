@@ -3,17 +3,23 @@ import type { EngineInterface, Register } from 'claude-code'
 
 import type { Quote } from '../types'
 
-// $.fs.read は ~ を展開しないので絶対パスで持つ
-const QUOTES_PATH = '/Users/tokizo/ghq/github.com/tokizuoh/dotfiles/claude/quotes.json'
-
 const current = atom({ plugin: 'sebone', key: 'current' } as const, null)
 
 const isQuote = (v: unknown): v is Quote =>
   typeof v === 'object' && v !== null && typeof (v as Quote).text === 'string'
 
+// mod は ~/.claude/skills/sebone へのシンボリックリンク経由で読み込まれるので、
+// 実体（dotfiles/claude/mods/sebone）まで解決してから2つ上の claude/quotes.json を指す。
+// ホームや ghq の置き場所は PC ごとに違うため、絶対パスで持たない
+const quotesPath = async ($: EngineInterface): Promise<string> => {
+  const stat = await $.fs.stat($.plugin.root, { resolve: true }).catch(() => undefined)
+  const root = stat?.realPath ?? $.plugin.root
+  return `${root.replace(/\/+$/, '').split('/').slice(0, -2).join('/')}/quotes.json`
+}
+
 const loadQuotes = async ($: EngineInterface): Promise<Quote[]> => {
   try {
-    const parsed: unknown = JSON.parse((await $.fs.read(QUOTES_PATH)) as string)
+    const parsed: unknown = JSON.parse((await $.fs.read(await quotesPath($))) as string)
     return Array.isArray(parsed) ? parsed.filter(isQuote) : []
   } catch {
     return []

@@ -36,6 +36,32 @@ test('セッション開始時に名言ファイルの1件が本文だけで表�
   }
 })
 
+test('mod の実体の2つ上にある quotes.json を、ホームの場所によらず読む', async ($, on) => {
+  const REAL_ROOT = '/Users/someone/src/dotfiles/claude/mods/sebone'
+  const read: string[] = []
+  on('fs.stat', (_, e) => ({
+    value: {
+      kind: 'dir',
+      size: 0,
+      mtimeMs: 0,
+      isLink: true,
+      ...(e.resolve ? { realPath: REAL_ROOT } : {}),
+    },
+  }))
+  on('fs.read', (_, e) => {
+    read.push(e.path)
+    return { value: JSON.stringify(QUOTES) }
+  })
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+
+  await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
+
+  expect(read).toEqual(['/Users/someone/src/dotfiles/claude/quotes.json'])
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  expect((await ui.find({ type: 'Text', text: QUOTE_TEXT }))?.text).toMatch(QUOTE_TEXT)
+  await ui.unmount()
+})
+
 test('プロンプト送信のたびに直前とは別の名言に変わる', async ($, on) => {
   on('fs.read', () => ({ value: JSON.stringify(QUOTES) }))
   on('session.start', (_, e) => ({ cwd: e.cwd }))
