@@ -81,6 +81,8 @@ ln -sfnv ${agents_md} ${claude_config_path}/CLAUDE.md
 # Claude settings & statusline
 ln -sfnv ${PWD}/claude/statusline.sh ${claude_config_path}/statusline.sh
 ln -sfnv ${PWD}/claude/settings.json ${claude_config_path}/settings.json
+mkdir -p ${claude_config_path}/hooks
+ln -sfnv ${PWD}/claude/hooks/prompt-size-guard.py ${claude_config_path}/hooks/prompt-size-guard.py
 
 codex_config_path=${HOME}/.codex
 if [ ! -d "$codex_config_path" ]; then
