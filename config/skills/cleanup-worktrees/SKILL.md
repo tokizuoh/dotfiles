@@ -18,6 +18,7 @@ allowed-tools: Bash(git fetch:*), Bash(git worktree list:*), Bash(git worktree r
 - CLOSED の PR や PR がないブランチは作業途中の可能性があるので、自動では消さない
 - Claude Code のセッションが cwd を置いている worktree は消さない。作業中のセッションの足元を消すと、そのセッションが壊れるため
   - プロセスの cwd は `lsof -c claude` では引けない。claude CLI の lsof 上のコマンド名はバージョン番号（例: `2.1.291`）になるため。`ps` の `comm` で PID を取ってから `lsof -p` で引く
+  - `comm` は `claude` 単体とは限らない。デスクトップアプリから起動したセッションでは `/Users/<user>/Library/Application Support/Claude/claude-code/<version>/.../MacOS/claude` のように空白を含むフルパスになる。awk の `$2` で比べると空白で切れて一致しないので、PID を除いた残り全体が `claude` か、`/claude` で終わるかで判定する
   - 分かるのはセッションを**起動した**ディレクトリだけ。メインの worktree で起動したセッションがサブエージェントで別の worktree を触っている場合は検出できないので、parallel-worktree の作業中には実行しない
 
 ## ワークフロー
@@ -71,9 +72,11 @@ git -C <path> rev-parse HEAD
 Claude Code のセッションの cwd は、worktree ごとではなく1回だけ取る。
 
 ```bash
-pids=$(ps -axo pid=,comm= | awk '$2=="claude"{print $1}' | paste -sd, -)
+pids=$(ps -axo pid=,comm= | awk '{pid=$1; $1=""; sub(/^ /,""); if ($0=="claude" || $0 ~ /\/claude$/) print pid}' | paste -sd, -)
 [ -n "$pids" ] && lsof -a -d cwd -p "$pids" -Fn | sed -n 's/^n//p' | sort -u
 ```
+
+このスキルを実行しているセッション自身が必ず1件は出る。出力が空なら検出が空振りしているので、削除に進まず `ps -axo pid=,comm=` の実際の値を確かめる。
 
 出力のいずれかが worktree のパスと一致するか、`<path>/` で始まれば「セッションあり」とする。
 
